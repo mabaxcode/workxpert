@@ -25,7 +25,9 @@
         <link href="<?=base_url()?>portal/css/owl.theme.default.min.css" rel="stylesheet">
 
         <link href="<?=base_url()?>portal/css/tooplate-gotto-job.css" rel="stylesheet">
-        
+
+
+
     </head>
     
     <body id="top">
@@ -68,7 +70,7 @@
                                 <li style="font-size: 16px;"><a class="dropdown-item" href="<?=base_url('main/profile')?>"><i class="bi bi-person-lines-fill"></i>&nbsp;&nbsp;Profile</a></li>
                                 <li style="font-size: 16px;"><a class="dropdown-item" href="#"><i class="bi bi-calendar2-check"></i>&nbsp;&nbsp;My Application</a></li>
                                 <li style="font-size: 16px;"><a class="dropdown-item" href="#"><i class="bi bi-card-checklist"></i>&nbsp;&nbsp;Resume</a></li>
-                                <li style="font-size: 16px;"><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;Log Out</a></li>
+                                <li style="font-size: 16px;"><a class="dropdown-item" href="<?=base_url('logout/destroy_sess')?>"><i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;Log Out</a></li>
                               </ul>
                             </div>
                             <? } else { ?>
@@ -86,130 +88,71 @@
                         <? } ?>
                         
                     </ul>
+
                 </div>
+
             </div>
+
         </nav>
 
+
+
         <main>
-
-
             <section class="job-section section-padding pb-0">
+
                 <div class="container">
+
+
+                    <?php if ($this->session->flashdata('sucess_save')): ?>
+                        <div class="alert alert-primary" role="alert">
+                        <?= $this->session->flashdata('sucess_save'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <? if($personal['is_completed'] <> "Y" || $education['is_completed'] <> "Y"){ ?>
+                    <div class="alert alert-info" role="alert">
+                      <h4 class="alert-heading">Notice!</h4>
+                      <p>Your account information not complete yet. Please complete all of your information first</p>
+                      <hr>
+                      <? if($personal['is_completed'] <> "Y"){ ?>
+                      <p class="mb-0"><strong>Alert !</strong> Personal details not complete</p>
+                      <? } ?>
+                      <? if($education['is_completed'] <> "Y"){ ?>
+                      <p class="mb-0"><strong>Alert !</strong> Education details not complete</p>
+                      <? } ?>
+                      
+                      <!-- <p class="mb-0"><strong>Alert !</strong> Skill details not complete</p> -->
+                    </div>
+
+                    <? } ?>
+
                     <div class="row">
 
-                        <div class="col-lg-8 col-12">
-                            <h2 class="job-title mb-0">Technical Lead</h2>
+                        <div class="col-lg-12 col-12">
 
-                            <div class="job-thumb job-thumb-detail">
-                                <div class="d-flex flex-wrap align-items-center border-bottom pt-lg-3 pt-2 pb-3 mb-4">
-                                    <p class="job-location mb-0">
-                                        <i class="custom-icon bi-geo-alt me-1"></i>
-                                        Kuala, Malaysia
-                                    </p>
-
-                                    <p class="job-date mb-0">
-                                        <i class="custom-icon bi-clock me-1"></i>
-                                        10 hours ago
-                                    </p>
-
-                                    <p class="job-price mb-0">
-                                        <i class="custom-icon bi-cash me-1"></i>
-                                        $20k
-                                    </p>
-
-                                    <div class="d-flex">
-                                        <p class="mb-0">
-                                            <a href="job-listings.html" class="badge badge-level">Internship</a>
-                                        </p>
-
-                                        <p class="mb-0">
-                                            <a href="job-listings.html" class="badge">Freelance</a>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <h4 class="mt-4 mb-2">Job Description</h4>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                                <h5 class="mt-4 mb-3">The Role</h5>
-
-                                <p class="mb-1"><strong>Benefits:</strong> Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito adipcingi elit</p>
-
-                                <p><strong>Good salary:</strong> Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito</p>
-
-                                <h5 class="mt-4 mb-3">Requirements</h5>
-
-                                <ul>
-                                    <li>Strong knowledge in computing skill</li>
-
-                                    <li>Minimum 5 years of working experiences consectetur omeg</li>
-
-                                    <li>Excellent interpersonal skills</li>
-                                </ul>
-
-                                <div class="d-flex justify-content-center flex-wrap mt-5 border-top pt-4">
-                                    <a href="#" class="custom-btn btn mt-2">Apply now</a>
-
-                                    <a href="#" class="custom-btn custom-border-btn btn mt-2 ms-lg-4 ms-3">Save this job</a>
-
-                                    <div class="job-detail-share d-flex align-items-center">
-                                        <p class="mb-0 me-lg-4 me-3">Share:</p>
-
-                                        <a href="#" class="bi-facebook"></a>
-
-                                        <a href="#" class="bi-twitter mx-3"></a>
-
-                                        <a href="#" class="bi-share"></a>
-                                    </div>
-                                </div>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="bi bi-person-fill"></i> Personal Details</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="bi bi-mortarboard-fill"></i> Education</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class="bi bi-file-earmark-bar-graph"></i> Skills</a>
+                              </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                  <? $this->load->view('personal-details-tab'); ?>
+                              </div>
+                              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                   <? $this->load->view('education-details-tab'); ?>
+                              </div>
+                              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                  <? $this->load->view('skill-details-tab'); ?>
+                              </div>
                             </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12 mt-5 mt-lg-0">
-                            <div class="job-thumb job-thumb-detail-box bg-white shadow-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="job-image-wrap d-flex align-items-center bg-white shadow-lg mb-3">
-                                        <img src="<?=base_url()?>portal/images/logos/google.png" class="job-image me-3 img-fluid" alt="">
-
-                                        <p class="mb-0">Google</p>
-                                    </div>
-
-                                    <a href="#" class="bi-bookmark ms-auto me-2"></a>
-
-                                    <a href="#" class="bi-heart"></a>
-                                </div>
-
-                                <h6 class="mt-3 mb-2">About the Company</h6>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur elit sed do eiusmod tempor incididunt labore.</p>
-
-                                <h6 class="mt-4 mb-3">Contact Information</h6>
-
-                                <p class="mb-2">
-                                    <i class="custom-icon bi-globe me-1"></i>
-
-                                    <a href="#" class="site-footer-link">
-                                        www.jobbportal.com
-                                    </a>
-                                </p>
-
-                                <p class="mb-2">
-                                    <i class="custom-icon bi-telephone me-1"></i>
-
-                                    <a href="tel: 305-240-9671" class="site-footer-link">
-                                        305-240-9671
-                                    </a>
-                                </p>
-
-                                <p>
-                                    <i class="custom-icon bi-envelope me-1"></i>
-
-                                    <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                                        info@jobportal.co
-                                    </a>
-                                </p>
-                            </div>
+                            
                         </div>
 
                     </div>
@@ -217,63 +160,7 @@
             </section>
         </main>
 
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-lg-4 col-md-6 col-12 mb-3">
-                        <div class="d-flex align-items-center mb-4">
-                            <img src="<?=base_url()?>portal/images/pkslogo.png" class="img-fluid logo-image">
-
-                            <div class="d-flex flex-column">
-                                <strong class="logo-text">WorkXpert Training</strong>
-                                <small class="logo-slogan">JTMK INTERNSHIP PORTAL</small>
-                            </div>
-                        </div>  
-
-                        <p class="mb-2">
-                            <i class="custom-icon bi-globe me-1"></i>
-                            <a href="#" class="site-footer-link">
-                                www.workxperttraining.com
-                            </a>
-                        </p>
-                        <p>
-                            <i class="custom-icon bi-envelope me-1"></i>
-
-                            <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                                info@jobportal.co
-                            </a>
-                        </p>
-
-                    </div>
-
-                    <div class="col-lg-4 col-md-8 col-12 mt-3 mt-lg-0">
-                        <h6 class="site-footer-title">Newsletter</h6>
-
-                        <form class="custom-form newsletter-form" action="#" method="post" role="form">
-                            <h6 class="site-footer-title">Get notified Internship news!</h6>
-
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi-person"></i></span>
-
-                                <input type="text" name="newsletter-name" id="newsletter-name" class="form-control" placeholder="yourname@gmail.com" required>
-
-                                <button type="submit" class="form-control">
-                                    <i class="bi-send"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="site-footer-bottom">
-                <div class="container">
-                    <div class="row">
-                    </div>
-                </div>
-            </div>
-        </footer>
+        
 
         <!-- JAVASCRIPT FILES -->
         <script src="<?=base_url()?>portal/js/jquery.min.js"></script>
@@ -281,6 +168,17 @@
         <script src="<?=base_url()?>portal/js/owl.carousel.min.js"></script>
         <script src="<?=base_url()?>portal/js/counter.js"></script>
         <script src="<?=base_url()?>portal/js/custom.js"></script>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        <?php if ($this->session->flashdata('skill_saved')): ?>
+            document.getElementById("contact-tab").click();
+         <?php endif; ?>
+    </script>
 
     </body>
 </html>

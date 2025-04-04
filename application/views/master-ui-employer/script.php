@@ -48,6 +48,52 @@ KTUtil.onDOMContentLoaded((function() {
 }));
 
 
+"use strict";
+var KTUsersListClose = function() {
+    var e, t, n, r, o = document.getElementById("dt_staff_list_close"),
+        c = () => {
+            
+        };
+
+    return {
+        init: function() {
+            o && (o.querySelectorAll("tbody tr").forEach((e => {
+                const t = e.querySelectorAll("td"),
+                    n = t[3].innerText.toLowerCase();
+                let r = 0,
+                    o = "minutes";
+                n.includes("yesterday") ? (r = 1, o = "days") : n.includes("mins") ? (r = parseInt(n.replace(/\D/g, "")), o = "minutes") : n.includes("hours") ? (r = parseInt(n.replace(/\D/g, "")), o = "hours") : n.includes("days") ? (r = parseInt(n.replace(/\D/g, "")), o = "days") : n.includes("weeks") && (r = parseInt(n.replace(/\D/g, "")), o = "weeks");
+                const c = moment().subtract(r, o).format();
+                t[3].setAttribute("data-order", c);
+                // const l = moment(t[5].innerHTML, "DD MMM YYYY, LT").format();
+                // t[5].setAttribute("data-order", l)
+            })), (e = $(o).DataTable({
+                info: !1,
+                order: [],
+                pageLength: 10,
+                lengthChange: !1,
+                columnDefs: [{
+                    orderable: !1,
+                    targets: 0
+                }, {
+                    orderable: !1,
+                    targets: 3
+                }]
+            })).on("draw", (function() {
+                c()
+            })), document.querySelector('[data-kt-user-table-filter-close="search"]').addEventListener("keyup", (function(t) {
+                e.search(t.target.value).draw()
+            })), c(), (() => {
+                const t = document.querySelector('[data-kt-user-table-filter-close="form"]')
+            })())
+        }
+    }
+}();
+KTUtil.onDOMContentLoaded((function() {
+    KTUsersListClose.init()
+}));
+
+
 var KTModalNewTargetEdit = function() {
     var t, e, n, a, o, i;
     return {
@@ -69,40 +115,61 @@ var KTModalNewTargetEdit = function() {
                 n.revalidateField("team_assign")
             })), n = FormValidation.formValidation(a, {
                 fields: {
-                    name: {
+                    title: {
                         validators: {
                             notEmpty: {
-                                message: "Name is required"
+                                message: "Training title is required"
                             }
                         }
                     },
-                    username: {
+                    state: {
                         validators: {
                             notEmpty: {
-                                message: "Username is required"
+                                message: "State location is required"
                             }
                         }
                     },
-                    password: {
+                    city: {
                         validators: {
                             notEmpty: {
-                                message: "The password is required"
+                                message: "City location is required"
                             }
                         }
                     },
-                    "confirm-password": {
+                    job_desc: {
                         validators: {
                             notEmpty: {
-                                message: "The password confirmation is required"
-                            },
-                            identical: {
-                                compare: function() {
-                                    return a.querySelector('[name="password"]').value
-                                },
-                                message: "The password and its confirm are not the same"
+                                message: "Job description is required"
                             }
                         }
                     },
+                    allowance: {
+                        validators: {
+                            notEmpty: {
+                                message: "Allowance is required"
+                            }
+                        }
+                    },
+                    requirement: {
+                        validators: {
+                            notEmpty: {
+                                message: "Requirement is required"
+                            }
+                        }
+                    },
+                    // "confirm-password": {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: "The password confirmation is required"
+                    //         },
+                    //         identical: {
+                    //             compare: function() {
+                    //                 return a.querySelector('[name="password"]').value
+                    //             },
+                    //             message: "The password and its confirm are not the same"
+                    //         }
+                    //     }
+                    // },
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger,
@@ -119,7 +186,7 @@ var KTModalNewTargetEdit = function() {
                         t.removeAttribute("data-kt-indicator"), t.disabled = !1,
                         // doRegister(workshopForm);
                         $.ajax({
-                            url: base_url + 'admin/create_staff_account',
+                            url: base_url + 'employer/create_new_post',
                             type: "POST",
                             data: workshopForm,
                             dataType: "json",

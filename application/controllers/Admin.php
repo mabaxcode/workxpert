@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
 	{	
 		$data['content']      = 'admin/dashboard';
 
-		$data['total_staff'] = count_any_table(array('user_type' => '1', 'status' => '2'), 'users');
+		$data['total_staff']  = count_any_table(array('user_type' => '1', 'status' => '2'), 'users');
 		$data['total_vendor'] = count_any_table(array('user_type' => '2', 'status' => '2'), 'users');
 
 		$this->load->view('master-ui-admin/main', $data);

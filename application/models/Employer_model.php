@@ -1,6 +1,6 @@
 <?php
 
-class Main_model extends CI_Model {
+class Employer_model extends CI_Model {
 
     function __construct()
     {
@@ -15,7 +15,7 @@ class Main_model extends CI_Model {
         $this->db->where(array(
             'email'      => $data['email'], 
             'password'   => md5($data['password']),
-            'user_type'  => '1',
+            'user_type'  => '2',
         ));
         $query = $this->db->get($this->db_user);
 

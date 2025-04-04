@@ -14,6 +14,42 @@
 										</a>
 										</a>
 									</div>
+
+									<div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
+										<!--begin:Menu link-->
+										<span class="menu-link">
+											<!-- <span class="menu-icon">
+												<i class="ki-outline ki-briefcase fs-2"></i>
+											</span> -->
+											<span class="menu-icon">
+											<i class="ki-duotone ki-bank fs-2">
+											 <span class="path1"></span>
+											 <span class="path2"></span>
+											</i>
+										</span>
+											<span class="menu-title">Company Information</span>
+											<!-- <span class="menu-arrow"></span> -->
+										</span>
+									</div>
+
+									<div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
+										<!--begin:Menu link-->
+										<span class="menu-link">
+											<!-- <span class="menu-icon">
+												<i class="ki-outline ki-briefcase fs-2"></i>
+											</span> -->
+											<span class="menu-icon">
+											<i class="ki-duotone ki-file fs-2">
+												<span class="path1"></span>
+												 <span class="path2"></span>
+												 <span class="path3"></span>
+												 <span class="path4"></span>
+											</i>
+										</span>
+											<span class="menu-title">All Jobs</span>
+											<!-- <span class="menu-arrow"></span> -->
+										</span>
+									</div>
 								
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
@@ -30,11 +66,12 @@
 												 <span class="path4"></span>
 											</i>
 										</span>
-											<span class="menu-title">Staff Management</span>
-											<span class="menu-arrow"></span>
+											<span class="menu-title">Candidates</span>
+											<!-- <span class="menu-arrow"></span> -->
 										</span>
 										<!--end:Menu link-->
 										<!--begin:Menu sub-->
+										<?/*
 										<div class="menu-sub menu-sub-accordion">
 											<!--begin:Menu item-->
 											<div class="menu-item">
@@ -69,9 +106,29 @@
 											</div>
 											<!--end:Menu item-->
 										</div>
+										*/?>
 										<!--end:Menu sub-->
 									</div>
+									<div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
+										<!--begin:Menu link-->
+										<span class="menu-link">
+											<!-- <span class="menu-icon">
+												<i class="ki-outline ki-briefcase fs-2"></i>
+											</span> -->
+											<span class="menu-icon">
+											<i class="ki-duotone ki-file fs-2">
+												<span class="path1"></span>
+												 <span class="path2"></span>
+												 <span class="path3"></span>
+												 <span class="path4"></span>
+											</i>
+										</span>
+											<span class="menu-title">Interviews</span>
+											<!-- <span class="menu-arrow"></span> -->
+										</span>
+									</div>
 									<!--end:Menu item-->
+									<?/*
 									<div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
 										<!--begin:Menu link-->
 										<span class="menu-link">
@@ -109,6 +166,7 @@
 										</div>
 										<!--end:Menu sub-->
 									</div>
+									*/?>
 								</div>
 								<!--end::Sidebar menu-->
 							</div>

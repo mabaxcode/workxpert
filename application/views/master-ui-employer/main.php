@@ -71,8 +71,8 @@ License: For each use you must have a valid license purchased only from above li
 								<img alt="Logo" src="<?=base_url()?>assets/media/logos/demo39-dark.svg" class="h-25px theme-dark-show" />
 							</a>
 							*/?>
-							<a href="<?=base_url('admin')?>"><i class="ki-outline ki-paypal fs-2hx mb-2 pe-0"></i></a>&nbsp;
-							<span class="fs-2 fw-bold d-block text-muted">E-Wallet</span>
+							<!-- <a href="<?=base_url('admin')?>"><i class="ki-outline ki-paypal fs-2hx mb-2 pe-0"></i></a>&nbsp; -->
+							<span class="fs-3 fw-bold d-block text-muted">WorkXpert</span>
 							<!--end::Logo-->
 						</div>
 						<!--begin::Navbar-->
@@ -579,7 +579,7 @@ License: For each use you must have a valid license purchased only from above li
 				<!--begin::Wrapper-->
 				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
 					<!--begin::Sidebar-->
-					<? $this->load->view('master-ui-admin/menu'); ?>
+					<? $this->load->view('master-ui-employer/menu'); ?>
 					<!--end::Sidebar-->
 					<!--begin::Main-->
 					<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -587,7 +587,7 @@ License: For each use you must have a valid license purchased only from above li
 						<? $this->load->view($content); ?>
 						<!--end::Content wrapper-->
 						<!--begin::Footer-->
-						<? $this->load->view('master-ui-admin/footer'); ?>
+						<? $this->load->view('master-ui-employer/footer'); ?>
 						<!--end::Footer-->
 					</div>
 					<!--end:::Main-->
@@ -4014,7 +4014,7 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="<?=base_url()?>assets/js/custom/utilities/modals/users-search.js"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
-		<? $this->load->view('master-ui-admin/script'); ?>
+		<? $this->load->view('master-ui-employer/script'); ?>
 	</body>
 	<!--end::Body-->
 </html>

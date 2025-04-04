@@ -68,7 +68,7 @@
                                 <li style="font-size: 16px;"><a class="dropdown-item" href="<?=base_url('main/profile')?>"><i class="bi bi-person-lines-fill"></i>&nbsp;&nbsp;Profile</a></li>
                                 <li style="font-size: 16px;"><a class="dropdown-item" href="#"><i class="bi bi-calendar2-check"></i>&nbsp;&nbsp;My Application</a></li>
                                 <li style="font-size: 16px;"><a class="dropdown-item" href="#"><i class="bi bi-card-checklist"></i>&nbsp;&nbsp;Resume</a></li>
-                                <li style="font-size: 16px;"><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;Log Out</a></li>
+                                <li style="font-size: 16px;"><a class="dropdown-item" href="<?=base_url('logout/destroy_sess')?>"><i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;Log Out</a></li>
                               </ul>
                             </div>
                             <? } else { ?>
@@ -79,7 +79,7 @@
 
                         <? if( ! $this->session->userdata('user_id') ){ ?>
                         <li class="nav-item">
-                            <a class="nav-link custom-btn btn" href="login.html">Employer Site</a>
+                            <a class="nav-link custom-btn btn" href="<?=base_url('sign_in/employer_sign_in')?>">Employer Site</a>
                         </li>
                         <? } else { ?>
                         <? echo "Welcome, ". $this->session->userdata('name') ?>
